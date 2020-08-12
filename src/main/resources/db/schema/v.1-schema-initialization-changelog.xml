@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="admin" id="25096c45-a305-40df-a27b-1696e58b4aea" context="dev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="users" remarks="Пользователи">
+            <column name="user_id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)" remarks="Имя пользователя">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="VARCHAR" remarks="Пароль">
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="users"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="admin" id="f60131d4-bad3-4862-a626-2dca9055b67c" context="dev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="roles"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="roles" remarks="Роли">
+            <column name="role_id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)" remarks="Роль">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="roles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="admin" id="81ad00d0-f0a9-4483-a1a4-cf5da9db0553" context="dev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="user_role_join"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="user_role_join" remarks="Join-таблица пользователей и ролей">
+            <column name="user_id" type="BIGINT" remarks="ID пользователя">
+                <constraints nullable="false"
+                             foreignKeyName="user_id_fk"
+                             referencedTableName="users"
+                             referencedColumnNames="user_id"
+                />
+            </column>
+            <column name="role_id" type="BIGINT" remarks="ID роли">
+                <constraints nullable="false"
+                             foreignKeyName="role_id_fk"
+                             referencedTableName="roles"
+                             referencedColumnNames="role_id"
+                />
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="user_role_join"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
