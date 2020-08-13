@@ -31,7 +31,7 @@ public class EntryServiceWithoutSecurity implements EntryService {
     }
 
     @Override
-    public void delete(Entry entry) {
-        repository.delete(entry);
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 }
