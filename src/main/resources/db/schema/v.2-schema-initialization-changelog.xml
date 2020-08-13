@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet author="admin" id="d15f020e-436a-4051-9526-65d220cf8209" context="dev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="entries"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="entries" remarks="Пользователи">
+            <column name="entry_id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="resource" type="VARCHAR(255)" remarks="Название ресурса">
+            </column>
+            <column name="login" type="VARCHAR" remarks="Логин">
+            </column>
+            <column name="password" type="VARCHAR" remarks="Пароль">
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="entries"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
