@@ -1,0 +1,31 @@
+GET http://localhost:8080/api/v1/entry/all
+
+
+###
+POST http://localhost:8080/api/v1/entry/
+Content-Type: application/json
+
+{
+  "resource": "test",
+  "login": "test",
+  "password": "test",
+  "startDt": "2020-08-13T19:22:34.57",
+  "remark": "test"
+}
+
+###
+PUT http://localhost:8080/api/v1/entry/7
+Content-Type: application/json
+
+{
+"id": 7,
+"resource": "some another test",
+"login": "test",
+"password": "test",
+"startDt": "2020-08-13T19:22:34.57",
+"remark": "test"
+}
+###
+DELETE  http://localhost:8080/api/v1/entry/7
+
+###
