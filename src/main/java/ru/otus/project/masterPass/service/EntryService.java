@@ -10,6 +10,6 @@ public interface EntryService {
     Entry save(Entry entry);
     List<Entry> getAll();
     Entry getById(Long id);
-    void delete(Entry entry);
+    void deleteById(Long id);
     
 }
