@@ -17,9 +17,13 @@
             </column>
             <column name="resource" type="VARCHAR(255)" remarks="Название ресурса">
             </column>
-            <column name="login" type="VARCHAR" remarks="Логин">
+            <column name="login" type="VARCHAR(255)" remarks="Логин">
             </column>
-            <column name="password" type="VARCHAR" remarks="Пароль">
+            <column name="password" type="VARCHAR(255)" remarks="Пароль">
+            </column>
+            <column name="start_dt" type="DATETIME" remarks="Дата и время начала действия">
+            </column>
+            <column name="remark" type="VARCHAR(2000)" remarks="Примечание">
             </column>
         </createTable>
 

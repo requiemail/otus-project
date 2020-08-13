@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
@@ -32,5 +33,8 @@ public class Entry {
     private String login;
     @Column(name = "password")
     private String password;
-
+    @Column(name = "start_dt")
+    private LocalDateTime startDt;
+    @Column(name = "remark")
+    private String remark;
 }
