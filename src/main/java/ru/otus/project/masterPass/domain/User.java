@@ -32,7 +32,7 @@ public class User implements UserDetails {
 
     @Column(nullable = false, unique = true)
     private String username;
-
+    @Column(nullable = false, name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -48,16 +48,6 @@ public class User implements UserDetails {
                 .map(Role::getAuthority)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public String getPassword() {
-        return getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return getUsername();
     }
 
     @Override
