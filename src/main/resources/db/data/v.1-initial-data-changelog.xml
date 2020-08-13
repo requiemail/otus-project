@@ -5,6 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <changeSet id="765b1845-3c4d-41d5-a943-91a001e775e0" author="admin" context="dev">
-
+        <insert tableName="users">
+            <column name="user_id" value="1"/>
+            <column name="username" value="ADMIN"/>
+            <column name="password" value="$2b$10$KqRE4g8l8Jxnj7ygDKHRfOJXoCgXb/fYc3.lyk/S2fh8Eu/dDMf6G"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
