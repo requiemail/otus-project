@@ -37,4 +37,6 @@ public class Entry {
     private LocalDateTime startDt;
     @Column(name = "remark")
     private String remark;
+    @Column(name = "initialization_vector")
+    private String initializationVector;
 }

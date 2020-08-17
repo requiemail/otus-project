@@ -25,6 +25,8 @@
             </column>
             <column name="remark" type="VARCHAR(2000)" remarks="Примечание">
             </column>
+            <column name="initialization_vector" type="VARCHAR(50)" remarks="Вектор инициализации">
+            </column>
         </createTable>
 
         <rollback>

@@ -5,7 +5,7 @@ import ru.otus.project.masterPass.domain.Entry;
 
 public interface EncryptDecryptService {
 
-    Entry encrypt(Entry plainEntry);
-    Entry decrypt(Entry encryptedEntry);
+    Entry encrypt(Entry plainEntry) throws Exception;
+    Entry decrypt(Entry encryptedEntry) throws Exception;
 
 }
