@@ -1,5 +1,7 @@
 package ru.otus.project.masterPass.service.impl;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
 import ru.otus.project.masterPass.domain.Entry;
 import ru.otus.project.masterPass.service.EncryptDecryptService;
 
@@ -10,18 +12,23 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-
+@Primary
+@Service("aesEncryptDecryptService")
 public class AesEncryptDecryptService implements EncryptDecryptService {
 
-    private final SecretKey key;
+    private SecretKey key;
     private final byte[] initializationVector;
 
     public static final int GCM_IV_LENGTH = 12;
     public static final int GCM_TAG_LENGTH = 16;
 
-    // Master key must be 32 byte long
-    public AesEncryptDecryptService(String masterKey) {
-        this.key = new SecretKeySpec(masterKey.getBytes(), 0, masterKey.getBytes().length, "AES");
+    public void setKey(String key){
+        if (this.key == null) {
+            this.key = new SecretKeySpec(key.getBytes(), 0, key.getBytes().length, "AES");
+        }
+    }
+
+    public AesEncryptDecryptService() {
         initializationVector = new byte[GCM_IV_LENGTH];
         SecureRandom random = new SecureRandom();
         random.nextBytes(initializationVector);
