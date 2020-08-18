@@ -33,14 +33,6 @@ public class AesEncryptDecryptService implements EncryptDecryptService {
         random.nextBytes(this.initializationVector);
     }
 
-    public static void main(String[] args) {
-        Entry testEntry = Entry.builder().password("plainPassword").build();
-        AesEncryptDecryptService encryptDecryptService = new AesEncryptDecryptService();
-        encryptDecryptService.setKey("DtnxbyybrjdL;il2v'y98765not32USE");
-        Entry encryptedEntry = encryptDecryptService.encryptEntry(testEntry);
-        Entry decryptedEntry = encryptDecryptService.decryptEntry(encryptedEntry);
-    }
-
     public Entry encryptEntry(Entry entry) {
         String encryptedPassword = AesCryptUtils.encrypt(
                 entry.getPassword(),
