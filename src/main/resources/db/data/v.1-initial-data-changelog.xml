@@ -8,7 +8,7 @@
         <insert tableName="users">
             <column name="user_id" value="1"/>
             <column name="username" value="ADMIN"/>
-            <column name="password" value="$2b$10$KqRE4g8l8Jxnj7ygDKHRfOJXoCgXb/fYc3.lyk/S2fh8Eu/dDMf6G"/>
+            <column name="password" value="$2a$10$DS8srLiLcoMQCySrciM0ROH3DMcDNyzWGlOXk5.5qDjPQngQI41oW"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
