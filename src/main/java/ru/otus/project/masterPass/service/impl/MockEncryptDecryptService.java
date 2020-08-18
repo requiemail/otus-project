@@ -17,4 +17,8 @@ public class MockEncryptDecryptService implements EncryptDecryptService {
         return encryptedEntry;
     }
 
+    @Override
+    public void setKey(String key) {
+    }
+
 }
