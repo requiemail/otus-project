@@ -6,24 +6,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.nio.charset.StandardCharsets;
 
 @Slf4j
 public class AesCryptUtils {
-
-    public static void main(String[] args) {
-        SecretKey key = new SecretKeySpec ("DtnxbyybrjdL;il2v'y98765not32USE".getBytes(), 0, "DtnxbyybrjdL;il2v'y98765not32USE".getBytes().length, "AES");
-        byte[] initializationVector = "123456789012".getBytes(StandardCharsets.UTF_8);
-        int gcmIvLength = 12;
-        String plainText = "plainText";
-        try {
-            String encoded = encrypt(plainText, key, gcmIvLength, initializationVector);
-            String decoded = decrypt(encoded, key, gcmIvLength, initializationVector);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public static String encrypt(String plaintext, SecretKey key, int gcmTagLength, byte[] initializationVector) {
 
@@ -41,7 +26,7 @@ public class AesCryptUtils {
             // Perform Encryption
             cipherText = Base64Utils.encodeToString(cipher.doFinal(plaintext.getBytes()));
         } catch (Exception e) {
-            log.error(e.getMessage() + ": " + e.getStackTrace()[0].toString());
+            log.error(e.getMessage(), e);
         }
         return cipherText;
     }
@@ -62,7 +47,7 @@ public class AesCryptUtils {
             // Perform Decryption
             decryptedText = cipher.doFinal(Base64Utils.decodeToByteArray(cipherText));
         } catch (Exception e){
-            log.error(e.getMessage() + ": " + e.getStackTrace()[0].toString());
+            log.error(e.getMessage(), e);
         }
 
         return new String(decryptedText);
