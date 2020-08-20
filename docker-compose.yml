@@ -8,3 +8,24 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=masterpass
+    networks:
+      - nw
+  app:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_DRIVER=org.postgresql.Driver
+      - DB_URL=jdbc:postgresql://postgres:5432/masterpass
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=postgres
+      - WAIT_FOR=postgres:5432
+    networks:
+      - nw
+networks:
+  nw:
