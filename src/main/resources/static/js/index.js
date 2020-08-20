@@ -22,11 +22,11 @@ const removeChildren = node => {
 
 const promptForEntry = () => {
   return {
-    resource: 'test',
-    login: 'test',
-    password: 'test',
+    resource: document.getElementById("resource-name").value,
+    login: document.getElementById("login").value,
+    password: document.getElementById("password").value,
     startDt: new Date(),
-    remark: 'test'
+    remark: document.getElementById("remark").value,
   }
 };
 
@@ -35,18 +35,6 @@ const createEntry = () => {
   restApi(createEntrysWithUrl, entry)
     .then(() => renderEntrysTable())
     .catch(err => console.log(err));
-};
-const updateEntry = (id) => {
-  let entry = {
-    id: id,
-    ...promptForEntry()
-  }
-  let isConfirmed = confirm('Изменить?');
-  if (isConfirmed) {
-    restApi(updateEntrysWithUrl, entry)
-      .then(() => renderEntrysTable())
-      .catch(err => console.log(err));
-  }
 };
 const deleteEntry = (id) => {
   let isConfirmed = confirm('Точно удалить?');
@@ -71,14 +59,49 @@ function createRow(props, id) {
   };
   deleteButton.innerText = 'Удалить';
   row.appendChild(deleteButton);
-  let updateButton = document.createElement('button');
-  updateButton.onclick = () => {
-    updateEntry(id);
-  };
-  updateButton.innerText = 'Изменить';
-  row.appendChild(updateButton);
   return row;
 }
+
+function createFinalRow() {
+  let row = document.createElement('tr');
+  let td;
+  td = document.createElement('td');
+  let inputResourceName = document.createElement('input');
+  inputResourceName.setAttribute("id", "resource-name");
+  td.appendChild(inputResourceName);
+  row.appendChild(td);
+
+  td = document.createElement('td');
+  let inputLogin = document.createElement('input');
+  inputLogin.setAttribute("id", "login");
+  td.appendChild(inputLogin);
+  row.appendChild(td);
+
+  td = document.createElement('td');
+  let inputPassword = document.createElement('input');
+  inputPassword.setAttribute("id", "password");
+  td.appendChild(inputPassword);
+  row.appendChild(td);
+
+  td = document.createElement('td');
+  row.appendChild(td);
+
+  td = document.createElement('td');
+  let inputRemark = document.createElement('input');
+  inputRemark.setAttribute("id", "remark");
+  td.appendChild(inputRemark);
+  row.appendChild(td);
+
+
+  td = document.createElement('td');
+  let button = document.createElement('button');
+  button.onclick = createEntry;
+  button.innerText = 'Создать';
+  td.appendChild(button);
+  row.appendChild(td);
+  return row;
+}
+
 
 function createTable(entries, tableBody) {
   entries.forEach(entry => {
@@ -91,10 +114,7 @@ function createTable(entries, tableBody) {
     ];
     tableBody.appendChild(createRow(props, entry.id));
   });
-  let button = document.createElement('button');
-  button.onclick = createEntry;
-  button.innerText = 'Создать';
-  tableBody.appendChild(button);
+  tableBody.appendChild(createFinalRow());
 }
 
 const renderEntrysTable = () => {
