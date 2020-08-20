@@ -42,8 +42,9 @@ public class EntryRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
+    public Long delete(@PathVariable("id") Long id) {
         entryService.deleteById(id);
+        return id;
     }
 
 }
