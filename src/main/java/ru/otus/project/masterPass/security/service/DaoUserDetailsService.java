@@ -5,8 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.otus.project.masterPass.domain.User;
-import ru.otus.project.masterPass.repository.UserRepository;
+import ru.otus.project.masterPass.security.domain.User;
+import ru.otus.project.masterPass.security.repository.UserRepository;
 
 
 @RequiredArgsConstructor
