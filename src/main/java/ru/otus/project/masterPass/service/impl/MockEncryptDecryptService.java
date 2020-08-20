@@ -8,16 +8,17 @@ import ru.otus.project.masterPass.service.EncryptDecryptService;
 public class MockEncryptDecryptService implements EncryptDecryptService {
     
     @Override
-    public Entry encrypt(Entry plainEntry) {
+    public Entry encryptEntry(Entry plainEntry) {
         return plainEntry;
     }
 
     @Override
-    public Entry decrypt(Entry encryptedEntry) {
+    public Entry decryptEntry(Entry encryptedEntry) {
         return encryptedEntry;
     }
 
     @Override
     public void setKey(String key) {
     }
+
 }

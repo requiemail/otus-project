@@ -13,7 +13,6 @@ import ru.otus.project.masterPass.domain.Entry;
 import ru.otus.project.masterPass.service.EncryptDecryptService;
 import ru.otus.project.masterPass.service.EntryService;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,19 +26,19 @@ public class EntryRestController {
 
     @PostMapping
     public Entry encryptAndSave(@RequestBody Entry entry){
-        return entryService.save(encryptDecryptService.encrypt(entry));
+        return entryService.save(encryptDecryptService.encryptEntry(entry));
     }
 
     @GetMapping("/all")
     public List<Entry> getAllDecrypted(){
         return entryService.getAll().stream()
-                .map(encryptDecryptService::decrypt)
+                .map(encryptDecryptService::decryptEntry)
                 .collect(Collectors.toList());
     }
 
     @PutMapping("/{id}")
     public Entry encryptAndUpdate(@PathVariable("id") Long id, @RequestBody Entry entry) {
-        return entryService.save(encryptDecryptService.encrypt(entry));
+        return entryService.save(encryptDecryptService.encryptEntry(entry));
     }
 
     @DeleteMapping("/{id}")
