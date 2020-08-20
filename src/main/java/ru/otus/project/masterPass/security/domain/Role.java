@@ -1,4 +1,4 @@
-package ru.otus.project.masterPass.domain;
+package ru.otus.project.masterPass.security.domain;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
